@@ -167,8 +167,8 @@ class FriendlyBoid {
         }
 
         if (direction) {
-            stroke(0, 0, 255);
-            strokeWeight(2);
+            stroke(255);
+            strokeWeight(3);
             line(this.position.x, this.position.y, this.position.x + (this.velocity.x * 5), this.position.y + (this.velocity.y * 5));
         }
 

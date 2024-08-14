@@ -19,20 +19,21 @@ if (settings_dock == 'left') {
     canvas_position = 0;
 }
 
-let friendly_boid_count = 75;
-let enemy_boid_count = 10;
+// Boid variables
+let friendly_boid_count = 200;
+let enemy_boid_count = 3;
 let enemy_boid_attack_constant = 0.5;
-let enemy_avoidance_constant = 0.5;
-let enemy_avoidance_range = 100;
-let avoidance_constant = 0.05;
-let alignment_constant = 0.05;
-let cohesion_constant = 0.005;
+let enemy_avoidance_constant = 0.75;
+let enemy_avoidance_range = 150;
+let avoidance_constant = 0.15;
+let alignment_constant = 0.3;
+let cohesion_constant = 0.04;
 let interest_constant = 0.1;
 let poi_avoidance_constant = 0.5;
 let turn_constant = 0.3;
 let margin = 100;
-let avoidance_range = 15;
-let visible_range = 40;
+let avoidance_range = 25;
+let visible_range = 65;
 let poi_attraction_range = 500;
 let poi_protection_range = 50;
 let max_speed = 5;
@@ -155,25 +156,28 @@ function draw() {
         enemy_boids.pop();
     }
 
-    background(150);
+    background(0);
 
+    // Draw the margins
+    if (options[15].checked()) {
+        drawMargins();
+    }
+
+    // Draw points of interest
+    for (let poi of pointsOfInterest) {
+        poi.draw(protect_range = options[19].checked(), attract_range = options[17].checked());
+    }
+
+    // Draw friendly boids
     for (let boid of friendly_boids) {
         boid.update(trail = options[20].checked(), update = is_updating);
         boid.draw(trail = options[20].checked(), shape = options[22].value(), direction = options[21].checked(), range = options[11].checked(), avoid = options[7].checked());
     }
 
+    // Draw enemy boids
     for (let boid of enemy_boids) {
         boid.update(trail = options[20].checked(), update = is_updating);
         boid.draw(trail = options[20].checked(), shape = options[22].value(), direction = options[21].checked(), range = options[11].checked(), avoid = options[7].checked());
-    }
-
-    for (let poi of pointsOfInterest) {
-        poi.draw(protect_range = options[19].checked(), attract_range = options[17].checked());
-    }
-
-    // Draw the margins
-    if (options[15].checked()) {
-        drawMargins();
     }
 }
 
@@ -199,7 +203,7 @@ function keyPressed() {
 function drawMargins() {
     margin = options[14].value();
 
-    stroke(150, 0, 0, 50);
+    stroke(150, 0, 0, 200);
     strokeWeight(2);
     noFill();
     rect(margin, margin, width - 2 * margin, height - 2 * margin);
