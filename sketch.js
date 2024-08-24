@@ -163,7 +163,27 @@ function draw() {
         enemy_boids.pop();
     }
 
+    // Update boids
+    for (let boid of friendly_boids) {
+        boid.update(trail = options[20].checked(), update = is_updating);
+    }
+
+    for (let boid of enemy_boids) {
+        boid.update(trail = options[20].checked(), update = is_updating);
+    }
+
     background(0);
+
+    // Draw trails
+    if (options[20].checked()) {
+        for (let boid of friendly_boids) {
+            boid.drawTrail();
+        }
+
+        for (let boid of enemy_boids) {
+            boid.drawTrail();
+        }
+    }
 
     // Draw the margins
     if (options[15].checked()) {
@@ -177,14 +197,34 @@ function draw() {
 
     // Draw friendly boids
     for (let boid of friendly_boids) {
-        boid.update(trail = options[20].checked(), update = is_updating);
-        boid.draw(trail = options[20].checked(), shape = options[22].value(), direction = options[21].checked(), range = options[11].checked(), avoid = options[7].checked());
+        boid.drawBoid(shape = options[22].value());
     }
 
     // Draw enemy boids
     for (let boid of enemy_boids) {
-        boid.update(trail = options[20].checked(), update = is_updating);
-        boid.draw(trail = options[20].checked(), shape = options[22].value(), direction = options[21].checked(), range = options[11].checked(), avoid = options[7].checked());
+        boid.drawBoid(shape = options[22].value());
+    }
+
+    // Draw velocity vectors
+    if (options[21].checked()) {
+        for (let boid of friendly_boids) {
+            boid.drawVelocity();
+        }
+
+        for (let boid of enemy_boids) {
+            boid.drawVelocity();
+        }
+    }
+
+    // Draw avoidance ranges
+    if (options[7].checked()) {
+        for (let boid of friendly_boids) {
+            boid.drawAvoidanceRange();
+        }
+
+        for (let boid of enemy_boids) {
+            boid.drawAvoidanceRange();
+        }
     }
 }
 

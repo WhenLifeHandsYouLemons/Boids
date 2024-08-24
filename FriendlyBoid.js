@@ -149,7 +149,7 @@ class FriendlyBoid {
         this.position.add(this.velocity);
     }
 
-    draw(trail = false, shape = "Triangle", direction = false, range = false, avoid = false) {
+    drawBoid(shape = "Triangle") {
         // Draw the boid as a sphere with a line indicating its direction
         if (shape == "Circle") {
             stroke(0, 255, 0);
@@ -165,35 +165,28 @@ class FriendlyBoid {
             let c = createVector(-10, 0).rotate(angle + PI / 2).add(this.position);
             triangle(a.x, a.y, b.x, b.y, c.x, c.y);
         }
+    }
 
-        if (direction) {
-            stroke(255);
-            strokeWeight(3);
-            line(this.position.x, this.position.y, this.position.x + (this.velocity.x * 5), this.position.y + (this.velocity.y * 5));
-        }
-
+    drawTrail() {
         // Add a trail behind the boid
-        if (trail) {
-            strokeWeight(5);
-            for (let i = 0; i < this.trail.length - 1; i++) {
-                let alpha = map(i, 0, this.trail.length, 0, 255);
-                stroke(alpha);
-                line(this.trail[i].x, this.trail[i].y, this.trail[i + 1].x, this.trail[i + 1].y);
-            }
+        strokeWeight(5);
+        for (let i = 0; i < this.trail.length - 1; i++) {
+            let alpha = map(i, 0, this.trail.length, 0, 255);
+            stroke(alpha);
+            line(this.trail[i].x, this.trail[i].y, this.trail[i + 1].x, this.trail[i + 1].y);
         }
+    }
 
-        if (range) {
-            noFill();
-            stroke(0, 255, 0, 50);
-            strokeWeight(2);
-            ellipse(this.position.x, this.position.y, visible_range * 2);
-        }
+    drawAvoidanceRange() {
+        noFill();
+        stroke(255, 0, 0, 50);
+        strokeWeight(2);
+        ellipse(this.position.x, this.position.y, avoidance_range * 2);
+    }
 
-        if (avoid) {
-            noFill();
-            stroke(255, 0, 0, 50);
-            strokeWeight(2);
-            ellipse(this.position.x, this.position.y, avoidance_range * 2);
-        }
+    drawVelocity() {
+        stroke(255, 255, 255);
+        strokeWeight(3);
+        line(this.position.x, this.position.y, this.position.x + (this.velocity.x * 5), this.position.y + (this.velocity.y * 5));
     }
 }
