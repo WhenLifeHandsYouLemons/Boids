@@ -18,4 +18,15 @@ Alignment is very similar to coherence where boids will want to be clumped toget
 
 ## Other Factors
 
-We can also implememt other factors that control the boids to make them seem more like birds. Three such factors are: **Enemy boid avoidance**, **Points of interest**, and 
+We can also implememt other factors that control the boids to make them seem more like birds. Three such factors are: **Enemy boid avoidance**, **Points of interest**, and **Visible range**.
+
+### Enemy Boid Avoidance
+
+
+
+### Points of Interest
+
+
+
+### Visible Range
+
