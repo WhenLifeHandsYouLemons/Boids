@@ -1,7 +1,7 @@
 class FriendlyBoid {
     constructor(x, y) {
         this.position = createVector(x, y);
-        this.velocity = createVector(0, 0);
+        this.velocity = createVector(random(0, 1), random(0, 1));
 
         this.trail = [];
         for (let i = 0; i < 100; i++) {
@@ -174,12 +174,11 @@ class FriendlyBoid {
 
         // Add a trail behind the boid
         if (trail) {
-            for (let i = 0; i < this.trail.length; i++) {
+            strokeWeight(5);
+            for (let i = 0; i < this.trail.length - 1; i++) {
                 let alpha = map(i, 0, this.trail.length, 0, 255);
-                fill(255, 255, 255, alpha);
-                stroke(255, 255, 255, alpha);
-                strokeWeight(5);
-                point(this.trail[i].x, this.trail[i].y);
+                stroke(alpha);
+                line(this.trail[i].x, this.trail[i].y, this.trail[i + 1].x, this.trail[i + 1].y);
             }
         }
 

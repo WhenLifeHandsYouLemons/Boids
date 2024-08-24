@@ -1,6 +1,12 @@
-// START VISUAL SETTINGS
-let settings_dock = "left";     // Options: left, bottom
-// END VISUAL SETTINGS
+let screen_dock;
+let text_box;
+if (screen.availWidth < 800 || screen.availHeight < 675) {
+    settings_dock = "bottom";   // Options: left, bottom
+    text_box = true;
+} else {
+    settings_dock = "left";
+    text_box = false;
+}
 
 let friendly_boids = [];
 let enemy_boids = []
@@ -9,11 +15,11 @@ let texts = [];
 let options = [];
 let is_updating = true;
 let canvas_position = 0;
-let settings_displacement = 0;
+let setting_displacement;
 
 if (settings_dock == 'left') {
     setting_displacement = 0;
-    canvas_position = 400;
+    canvas_position = 350;
 } else if (settings_dock == 'bottom') {
     setting_displacement = screen.availHeight;
     canvas_position = 0;
@@ -111,12 +117,13 @@ function setup() {
         text.position(x_pos, y_pos);
         y_pos += 25;
     }
+    createP("Made and hosted by <a href='https://sooraj.dev/'>Sooraj</a>.").position(x_pos, y_pos);
 
-    x_pos = 190;
-    y_pos = 65 + setting_displacement;
+    x_pos = 210;
+    y_pos = 62 + setting_displacement;
     for (let option of options) {
         option.position(x_pos, y_pos);
-        option.size(200);
+        option.size();
         y_pos += 25;
     }
 
