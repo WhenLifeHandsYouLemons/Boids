@@ -39,3 +39,9 @@ The visible range is the radius around each boid that it can see other boids. If
 ## Extras
 
 This could be expanded on even more by adding more rules or changing the existing rules. For example, we could add a rule for boids to follow a path. We could also add an extra dimension and make the simulation work in 3D! The possibilities are endless!
+
+---
+
+This project is licensed under the MIT License. You can find a copy of the license in the [LICENSE](LICENSE) file.
+
+Created and hosted by [Sooraj](https://sooraj.dev/).

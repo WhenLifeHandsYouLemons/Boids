@@ -226,6 +226,17 @@ function draw() {
             boid.drawAvoidanceRange();
         }
     }
+
+    // Draw visible ranges
+    if (options[11].checked()) {
+        for (let boid of friendly_boids) {
+            boid.drawVisibleRange();
+        }
+
+        for (let boid of enemy_boids) {
+            boid.drawVisibleRange();
+        }
+    }
 }
 
 function keyPressed() {

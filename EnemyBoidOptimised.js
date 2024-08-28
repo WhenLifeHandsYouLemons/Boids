@@ -142,4 +142,11 @@ class EnemyBoidOptimised {
         strokeWeight(3);
         line(this.position.x, this.position.y, this.position.x + (this.velocity.x * 5), this.position.y + (this.velocity.y * 5));
     }
+
+    drawVisibleRange() {
+        noFill();
+        stroke(0, 255, 0, 50);
+        strokeWeight(2);
+        ellipse(this.position.x, this.position.y, visible_range * 2);
+    }
 }
